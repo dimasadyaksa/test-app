@@ -34,7 +34,7 @@ jobs:
           branch-suffix: "short-commit-hash"
           draft: false
 
-      - name: Run a one-line script
+      - shell: bash
         run: |
           GH_TOKEN=${{ secrets.GH_TOKEN }} gh pr close ${{ steps.create_pull_request.outputs.pull-request-number }}
           GH_TOKEN=${{ secrets.GH_TOKEN }} gh pr reopen ${{ steps.create_pull_request.outputs.pull-request-number }}
