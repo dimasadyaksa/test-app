@@ -32,3 +32,4 @@ jobs:
           sign-commits: true
           branch: "chore/jooq-schema-update"
           branch-suffix: "short-commit-hash"
+          draft: true
