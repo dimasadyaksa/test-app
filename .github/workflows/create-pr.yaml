@@ -3,6 +3,12 @@ on:
     types: [trigger-app]
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
