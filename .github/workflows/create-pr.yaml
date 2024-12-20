@@ -23,6 +23,16 @@ jobs:
           echo Hello, world!
           echo "${{ toJson(github.event.client_payload) }}" >> payload.txt
 
+      - name: Create commits
+        run: |
+          git config user.name 'Peter Evans'
+          git config user.email 'dimasadyaksa@users.noreply.github.com'
+          date +%s > report.txt
+          git commit -am "Modify tracked file during workflow"
+          date +%s > new-report.txt
+          git add .
+          git commit -m "Add untracked file during workflow"
+
       - id: create_pull_request
         name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
@@ -33,8 +43,9 @@ jobs:
           branch: "chore/jooq-schema-update"
           branch-suffix: "short-commit-hash"
           draft: false
+          token: ${{ secrets.GH_TOKEN }}
 
-      - name: Run a one-line script
-        run: |
-          GH_TOKEN=${{ secrets.GH_TOKEN }} gh pr close ${{ steps.create_pull_request.outputs.pull-request-number }}
-          GH_TOKEN=${{ secrets.GH_TOKEN }} gh pr reopen ${{ steps.create_pull_request.outputs.pull-request-number }}
+#      - name: Run a one-line script
+#        run: |
+#          GH_TOKEN=${{ secrets.GH_TOKEN }} gh pr close ${{ steps.create_pull_request.outputs.pull-request-number }}
+#          GH_TOKEN=${{ secrets.GH_TOKEN }} gh pr reopen ${{ steps.create_pull_request.outputs.pull-request-number }}
