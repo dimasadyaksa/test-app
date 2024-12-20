@@ -33,3 +33,10 @@ jobs:
           branch: "chore/jooq-schema-update"
           branch-suffix: "short-commit-hash"
           draft: true
+
+      - name: Run a one-line script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          gh pr close ${{ steps.cpr.outputs.pull-request-number }}
+          gh pr reopen ${{ steps.cpr.outputs.pull-request-number }}
