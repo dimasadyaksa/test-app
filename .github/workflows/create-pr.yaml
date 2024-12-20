@@ -28,10 +28,10 @@ jobs:
           git config user.name 'Peter Evans'
           git config user.email 'dimasadyaksa@users.noreply.github.com'
           date +%s > report.txt
-          git commit -am "Modify tracked file during workflow"
+          git commit -m -S "Modify tracked file during workflow"
           date +%s > new-report.txt
           git add .
-          git commit -m "Add untracked file during workflow"
+          git commit -m -S "Add untracked file during workflow"
 
       - id: create_pull_request
         name: Create Pull Request
