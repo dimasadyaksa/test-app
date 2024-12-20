@@ -21,7 +21,7 @@ jobs:
       - name: Run a one-line script
         run: |
           echo Hello, world!
-          echo "${{ github.event.client_payload }}" >> payload.txt
+          echo "${{ toJson(github.event.client_payload) }}" >> payload.txt
 
       - id: create_pull_request
         name: Create Pull Request
