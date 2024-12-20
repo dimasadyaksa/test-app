@@ -35,8 +35,6 @@ jobs:
           draft: false
 
       - name: Run a one-line script
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          gh pr close ${{ steps.create_pull_request.outputs.pull-request-number }}
-          gh pr reopen ${{ steps.create_pull_request.outputs.pull-request-number }}
+          GH_TOKEN=${{ secrets.GH_TOKEN }} gh pr close ${{ steps.create_pull_request.outputs.pull-request-number }}
+          GH_TOKEN=${{ secrets.GH_TOKEN }} gh pr reopen ${{ steps.create_pull_request.outputs.pull-request-number }}
